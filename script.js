@@ -1,49 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Select the form and feedback div
+    // Form Selection
     const form = document.getElementById("registration-form");
+    // Feedback Div Selection
     const feedbackDiv = document.getElementById("form-feedback");
 
-    // Add form submit event listener
+    // Form Submission Event Listener
     form.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); // Prevent default submission
 
-        // Retrieve and trim input values
+        // Retrieve User Inputs
         const username = document.getElementById("username").value.trim();
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
-        // Initialize validation variables
+        // Initialize Validation Variables
         let isValid = true;
         const messages = [];
 
-        // Username validation
+        // Validation of the username input
         if (username.length < 3) {
             isValid = false;
             messages.push("Username must be at least 3 characters long.");
         }
 
-        // Email validation
+        // Validation of the email input
         if (!email.includes("@") || !email.includes(".")) {
             isValid = false;
             messages.push("Email must contain both '@' and '.' characters.");
         }
 
-        // Password validation
+        // Validation of the password input
         if (password.length < 8) {
             isValid = false;
             messages.push("Password must be at least 8 characters long.");
         }
 
-        // Display feedback
-        feedbackDiv.style.display = "block"; // Make feedback div visible
+        // Feedback Display Logic
+        feedbackDiv.style.display = "block"; // Make feedback visible
         if (isValid) {
             feedbackDiv.textContent = "Registration successful!";
             feedbackDiv.style.color = "#28a745"; // Green for success
-            feedbackDiv.style.backgroundColor = "#d4edda"; // Light green background
+            feedbackDiv.style.backgroundColor = "#d4edda"; // Optional: light green background
         } else {
             feedbackDiv.innerHTML = messages.join("<br>");
             feedbackDiv.style.color = "#dc3545"; // Red for errors
-            feedbackDiv.style.backgroundColor = "#ffbaba"; // Light red background
+            feedbackDiv.style.backgroundColor = "#ffbaba"; // Optional: light red background
         }
     });
 });
